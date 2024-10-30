@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        @apply bg-purple-700
+    }
+    ::backdrop {
+        @apply bg-black bg-opacity-30;
+    }
+}
+@layer components {
+    button.default {
+        @apply bg-purple-400 rounded-xl hover:bg-purple-500 p-4
+    }
+}
