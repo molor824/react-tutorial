@@ -1,8 +1,8 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 function Newform({ onSubmit }) {
-  const bodyRef = useRef(null);
-  const titleRef = useRef(null);
+  const [bodyText, setBodyText] = useState("");
+  const [titleText, setTitleText] = useState("");
   const [bodyError, setBodyError] = useState();
   const [titleError, setTitleError] = useState();
 
@@ -15,9 +15,12 @@ function Newform({ onSubmit }) {
         <textarea
           required
           rows={3}
-          onInput={() => setBodyError()}
-          ref={bodyRef}
+          onInput={(e) => {
+            setBodyText(e.currentTarget.value);
+            setBodyError();
+          }}
           id="body"
+          value={bodyText}
           className="block w-full p-2 rounded-md border-none bg-purple-300 text-gray-800"
         />
       </div>
@@ -28,9 +31,12 @@ function Newform({ onSubmit }) {
         <input
           type="text"
           className="block w-full p-2 rounded-md border-none bg-purple-300 text-gray-800"
-          ref={titleRef}
           id="title"
-          onInput={() => setTitleError()}
+          value={titleText}
+          onInput={(e) => {
+            setTitleText(e.currentTarget.value);
+            setTitleError();
+          }}
         />
       </div>
       <button
@@ -38,8 +44,8 @@ function Newform({ onSubmit }) {
         className="items-end default"
         onClick={() => {
           let success = true;
-          let title = titleRef.current.value.trim();
-          let body = bodyRef.current.value.trim();
+          let title = titleText.trim();
+          let body = bodyText.trim();
 
           if (title === "") {
             setTitleError("Please fill in");
@@ -53,8 +59,6 @@ function Newform({ onSubmit }) {
           if (!success) return;
 
           onSubmit && onSubmit({ title, body });
-          titleRef.current.value = "";
-          bodyRef.current.value = "";
         }}
       >
         Post
