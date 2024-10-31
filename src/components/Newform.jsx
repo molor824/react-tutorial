@@ -41,7 +41,7 @@ function Newform({ onSubmit }) {
       </div>
       <button
         type="button"
-        className="items-end default"
+        className="items-end"
         onClick={() => {
           let success = true;
           let title = titleText.trim();
@@ -59,6 +59,8 @@ function Newform({ onSubmit }) {
           if (!success) return;
 
           onSubmit && onSubmit({ title, body });
+          setTitleText("");
+          setBodyText("");
         }}
       >
         Post
