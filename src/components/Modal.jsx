@@ -6,7 +6,7 @@ function Modal({ open, onCloseRequested, children }) {
     if (!dialogRef.current) return;
     if (open) dialogRef.current.showModal();
     else dialogRef.current.close();
-  }, [dialogRef.current, open]);
+  }, [open]);
 
   return (
     <dialog
