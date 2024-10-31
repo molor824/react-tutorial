@@ -17,7 +17,7 @@ function Newform({ onSubmit }) {
           rows={3}
           onInput={() => setBodyError()}
           ref={bodyRef}
-          name="body"
+          id="body"
           className="block w-full p-2 rounded-md border-none bg-purple-300 text-gray-800"
         />
       </div>
@@ -27,9 +27,9 @@ function Newform({ onSubmit }) {
         </label>
         <input
           type="text"
-          name="title"
           className="block w-full p-2 rounded-md border-none bg-purple-300 text-gray-800"
           ref={titleRef}
+          id="title"
           onInput={() => setTitleError()}
         />
       </div>
