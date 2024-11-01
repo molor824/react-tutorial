@@ -9,8 +9,6 @@
     ::backdrop {
         @apply bg-black bg-opacity-30;
     }
-}
-@layer components {
     button {
         @apply bg-purple-400 rounded-xl hover:bg-purple-500 p-4
     }

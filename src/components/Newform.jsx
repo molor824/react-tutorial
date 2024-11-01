@@ -6,6 +6,37 @@ function Newform({ onSubmit }) {
   const [bodyError, setBodyError] = useState();
   const [titleError, setTitleError] = useState();
 
+  const handleBodyInput = (e) => {
+    setBodyText(e.currentTarget.value);
+    setBodyError();
+  };
+  const handleTitleInput = (e) => {
+    setTitleText(e.currentTarget.value);
+    setTitleError();
+  };
+  const handleSubmitClick = () => {
+    let success = true;
+    let title = titleText.trim();
+    let body = bodyText.trim();
+
+    if (title === "") {
+      setTitleError("Please fill in");
+      success = false;
+    }
+    if (body === "") {
+      setBodyError("Please fill in");
+      success = false;
+    }
+
+    if (!success) return;
+
+    onSubmit && onSubmit({ title, body });
+    setTitleText("");
+    setBodyText("");
+    setBodyError();
+    setTitleError();
+  };
+
   return (
     <form className="bg-purple-700 p-4 rounded-xl flex flex-col gap-4">
       <div>
@@ -15,12 +46,10 @@ function Newform({ onSubmit }) {
         <textarea
           required
           rows={3}
-          onInput={(e) => {
-            setBodyText(e.currentTarget.value);
-            setBodyError();
-          }}
+          onInput={handleBodyInput}
           id="body"
           value={bodyText}
+          placeholder="Your text here..."
           className="block w-full p-2 rounded-md border-none bg-purple-300 text-gray-800"
         />
       </div>
@@ -33,36 +62,11 @@ function Newform({ onSubmit }) {
           className="block w-full p-2 rounded-md border-none bg-purple-300 text-gray-800"
           id="title"
           value={titleText}
-          onInput={(e) => {
-            setTitleText(e.currentTarget.value);
-            setTitleError();
-          }}
+          placeholder="Your title here..."
+          onInput={handleTitleInput}
         />
       </div>
-      <button
-        type="button"
-        className="items-end"
-        onClick={() => {
-          let success = true;
-          let title = titleText.trim();
-          let body = bodyText.trim();
-
-          if (title === "") {
-            setTitleError("Please fill in");
-            success = false;
-          }
-          if (body === "") {
-            setBodyError("Please fill in");
-            success = false;
-          }
-
-          if (!success) return;
-
-          onSubmit && onSubmit({ title, body });
-          setTitleText("");
-          setBodyText("");
-        }}
-      >
+      <button type="button" className="items-end" onClick={handleSubmitClick}>
         Post
       </button>
     </form>

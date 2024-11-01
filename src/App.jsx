@@ -7,17 +7,18 @@ import Modal from "./components/Modal";
 function App() {
   const [posts, setPosts] = useState([]);
   const [formOpen, setFormOpen] = useState(false);
+  const handleSubmit = (post) => {
+    setPosts([...posts, post]);
+    setFormOpen(false);
+  };
+  const handleCloseRequest = () => setFormOpen(false);
+  const handleOpenRequest = () => setFormOpen(true);
   return (
     <div className="flex flex-col items-center">
-      <Modal open={formOpen} onCloseRequested={() => setFormOpen(false)}>
-        <Newform
-          onSubmit={(post) => {
-            setPosts([...posts, post]);
-            setFormOpen(false);
-          }}
-        />
+      <Modal open={formOpen} onCloseRequested={handleCloseRequest}>
+        <Newform onSubmit={handleSubmit} />
       </Modal>
-      <Header onNewPost={() => setFormOpen(true)} />
+      <Header onNewPost={handleOpenRequest} />
       <div className="bg-gray-300 w-full h-[2px]"></div>
       <div className="flex flex-wrap justify-center max-w-[64rem] p-4 gap-4">
         {posts.length !== 0 ? (
