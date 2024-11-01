@@ -6,7 +6,7 @@ function Header({ onNewPost }) {
   const [formOpen, setFormOpen] = useState(false);
   const handleSubmit = (post) => {
     onNewPost(post);
-    handleCloseRequest();
+    setFormOpen(false);
   };
   const handleCloseRequest = () => setFormOpen(false);
   const handleOpenRequest = () => setFormOpen(true);
