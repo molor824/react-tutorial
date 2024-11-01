@@ -1,3 +1,5 @@
+import Post from "./Post";
+
 function PostList({ posts }) {
   return (
     <div className="flex flex-wrap justify-center max-w-[64rem] p-4 gap-4">
