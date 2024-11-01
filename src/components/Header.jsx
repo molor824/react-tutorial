@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Newform from "./Newform";
 import Modal from "./Modal";
 
 function Header({ onNewPost }) {
